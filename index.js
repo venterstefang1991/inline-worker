@@ -1,4 +1,4 @@
-var WORKER_ENABLED = !!(global === global.window && global.URL && global.Blob && global.Worker);
+var WORKER_ENABLED = !!(window && window.URL && window.Blob && window.Worker);
 
 function InlineWorker(func, self) {
   var _this = this;
@@ -11,8 +11,8 @@ function InlineWorker(func, self) {
       /^function\s*\w*\s*\([\w\s,]*\)\s*{([\w\W]*?)}$/
     )[1];
 
-    return new global.Worker(global.URL.createObjectURL(
-      new global.Blob([ functionBody ], { type: "text/javascript" })
+    return new window.Worker(window.URL.createObjectURL(
+      new window.Blob([ functionBody ], { type: "text/javascript" })
     ));
   }
 
